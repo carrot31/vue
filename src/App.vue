@@ -1,16 +1,20 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
+
+  <div class="menu">
+    <!-- 1. 자료안의 데이터 갯수만큼 반복됨 -->
+    <!-- 2. 작명한 변수는 데이터안의 자료가 됨 -->
+    <!-- key 용도: 반복문 사용시 구분하기 위해 사용 -->
+    <!-- i는 1씩 증가하는 변수 -->
+    <a v-for="(tag,i) in 메뉴들" :key="tag+i">{{tag}}</a>
+  </div>
+
   <div>
-    <h4 class="red" :style="스타일">{{product[0]}} 원룸</h4>
+
+    <div v-for="(room, j) in product" :key="room+j">
+    <h4>{{room}}</h4>
     <p>50 만원</p>
-  </div>
-  <div>
-    <h4>{{product[1]}} 원룸</h4>
-    <p>70 만원</p>
-  </div>
-  <div>
-    <h4>{{product[2]}} 원룸</h4>
-    <p>70 만원</p>
+    </div>
+    
   </div>
   
 </template>
@@ -20,14 +24,9 @@
 
 export default {
   name: 'App',
-  //데이터 보관함(object형식으로)
-  //데이터 바인딩 하는 이유: 
-  //1. 하드코딩 시 후에 변경 어려움
-  //2. vue의 실시간 자동렌더링 사용을 위해(data변경시 관련 HTML 자동 반영=> Web-app 사용 가능)
-  //*자주 바뀔 일 없는 데이터의 경우엔 적용 x => 하드코딩
-  //HTML 속성 데이터 바인딩: ':속성='데이터이름'
   data(){
     return{
+      메뉴들:['Home','Shop','About'],
       product: ['역삼동원룸', '천호동원룸', '마포구원룸']
     }
   },
@@ -43,6 +42,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
+.menu{
+  background: darkslateblue;
+  padding: 15px;
+  border-radius: 5px;
+}
+.menu a{
+  color: white;
+  padding: 10px;
+  }
 </style>
