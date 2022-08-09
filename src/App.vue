@@ -1,20 +1,26 @@
 <template>
 
   <div class="menu">
-    <!-- 1. 자료안의 데이터 갯수만큼 반복됨 -->
-    <!-- 2. 작명한 변수는 데이터안의 자료가 됨 -->
-    <!-- key 용도: 반복문 사용시 구분하기 위해 사용 -->
-    <!-- i는 1씩 증가하는 변수 -->
     <a v-for="(tag,i) in 메뉴들" :key="tag+i">{{tag}}</a>
   </div>
 
   <div>
-
-    <div v-for="(room, j) in product" :key="room+j">
-    <h4>{{room}}</h4>
+    <h4 >{{product[0]}} 원룸</h4>
     <p>50 만원</p>
-    </div>
+    <!-- ctrl+spacebar: 다양한 기능확인가능 -->
+    <!-- 함수사용가능 -->
+    <button @mouseover="increase(0)">허위매물신고</button> <span>신고수 : {{신고수[0]}}</span>
     
+  </div>
+  <div>
+    <h4>{{product[1]}} 원룸</h4>
+    <p>70 만원</p>
+    <button @mouseover="increase(1)">허위매물신고</button> <span>신고수 : {{신고수[1]}}</span>
+  </div>
+  <div>
+    <h4>{{product[2]}} 원룸</h4>
+    <p>70 만원</p>
+    <button @click="increase(2)">허위매물신고</button> <span>신고수 : {{신고수[2]}}</span>
   </div>
   
 </template>
@@ -26,8 +32,18 @@ export default {
   name: 'App',
   data(){
     return{
+      신고수: [0,0,0],
       메뉴들:['Home','Shop','About'],
       product: ['역삼동원룸', '천호동원룸', '마포구원룸']
+    }
+  },
+  methods:{
+    increase(a){
+      // 함수 사용시 this.필수
+      this.신고수[a]++
+    },
+    decrease(){
+      this.신고수--
     }
   },
   components: {
